@@ -1,9 +1,11 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
 import config from './config/index.js';
 import connectDB from './config/database.js';
 import routes from './routes/index.js';
+import swaggerSpec from './config/swagger.js';
 import { apiLimiter } from './middleware/rateLimiter.js';
 import { errorHandler, notFound } from './middleware/errorHandler.js';
 
@@ -28,15 +30,50 @@ app.use(express.urlencoded({ extended: true }));
 // Rate limiting
 app.use('/api/', apiLimiter);
 
+// Swagger documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'DevHub API Documentation'
+}));
+
+// Swagger JSON endpoint
+app.get('/api-docs.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
+
 // API routes
 app.use('/api', routes);
 
-// Root endpoint
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: API Root
+ *     description: Returns basic API information and available endpoints
+ *     tags: [Health]
+ *     responses:
+ *       200:
+ *         description: API information retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *                 documentation:
+ *                   type: string
+ *                 health:
+ *                   type: string
+ */
 app.get('/', (req, res) => {
   res.json({
     success: true,
     message: 'Welcome to DevHub API',
-    documentation: '/api',
+    documentation: '/api-docs',
     health: '/api/health',
   });
 });
