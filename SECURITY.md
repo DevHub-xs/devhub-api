@@ -1,4 +1,24 @@
-# Security Summary
+# Security Policy
+
+## Reporting a Vulnerability
+
+**Do not create public GitHub issues for security vulnerabilities.**
+
+Send details privately to: **paccarini.bar@outlook.com**
+
+Include:
+- Vulnerability description
+- Steps to reproduce
+- Potential impact
+- Suggested fix (optional)
+
+### Response Timeline
+
+- **Initial Response:** 48 hours
+- **Status Update:** 5 business days
+- **Fix Timeline:** Based on severity
+
+---
 
 ## Security Analysis Results
 
@@ -122,3 +142,7 @@ The identified security alerts are either false positives (NoSQL injection) or c
 
 **Overall Security Rating:** Good ✅
 **Production Ready:** Yes, with environment configuration updates
+
+---
+
+**Copyright © 2024-2025 Pedro Accarini. All Rights Reserved.**
