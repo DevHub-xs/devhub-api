@@ -9,7 +9,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/devhub-api.git"
+    "url": "git+https://github.com/paccarini-bar/devhub-api.git"
   },
   "keywords": [
     "devhub",
