@@ -1,22 +1,32 @@
 {
   "name": "devhub-api",
-  "version": "0.0.1",
-  "description": "Internal Developer Portal API with microservices architecture",
+  "version": "0.1.0",
+  "description": "Enterprise-grade Node.js API for Internal Developer Portal with microservices architecture",
   "main": "src/index.js",
   "type": "module",
-  "scripts": {
-    "start": "node src/index.js",
-    "dev": "node --watch src/index.js",
-    "test": "echo \"No tests specified\" && exit 0"
+  "author": "Pedro Accarini <paccarini.bar@outlook.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/devhub-api.git"
   },
   "keywords": [
     "devhub",
     "api",
     "microservices",
-    "developer-portal"
+    "developer-portal",
+    "nodejs",
+    "express",
+    "mongodb",
+    "jwt",
+    "rest-api"
   ],
-  "author": "",
-  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
