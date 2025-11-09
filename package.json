@@ -1,11 +1,11 @@
 {
   "name": "devhub-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Enterprise-grade Node.js API for Internal Developer Portal with microservices architecture",
   "main": "src/index.js",
   "type": "module",
   "author": "Pedro Accarini <paccarini.bar@outlook.com>",
-  "license": "UNLICENSED",
+  "license": "All Rights Reserved",
   "private": true,
   "repository": {
     "type": "git",
