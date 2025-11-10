@@ -26,7 +26,12 @@ const connectDB = async () => {
 
   } catch (error) {
     console.error(`Error connecting to MongoDB: ${error.message}`);
-    process.exit(1);
+    console.log('\n⚠️  MongoDB Connection Failed!');
+    console.log('📋 Quick Fix Options:');
+    console.log('   1. Start MongoDB with Docker: npm run docker:db');
+    console.log('   2. Install MongoDB locally - see MONGODB_SETUP.md');
+    console.log('   3. Use MongoDB Atlas (cloud) - see MONGODB_SETUP.md\n');
+    // Don't exit - let the API run without DB for now
   }
 };
 
