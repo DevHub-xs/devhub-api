@@ -1,0 +1,20 @@
+# DevHub Ignore File
+# Files and folders DevHub should ignore when processing this project
+
+# Temporary
+tmp/
+temp/
+*.tmp
+*.bak
+
+# Git
+.git/
+.gitignore
+
+# DevHub old backups
+.devhub-old/
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
