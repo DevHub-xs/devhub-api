@@ -1,0 +1,75 @@
+# DevHub Backend Orchestration Configuration
+# This file controls how the DevHub backend manages this project
+
+version: "1.0"
+
+# Backend service configuration
+backend:
+  runtime: nodejs
+  version: "20"
+  framework: express
+  port: 3000
+  
+  # Environment handling
+  environments:
+    development:
+      autoSync: true          # Auto-sync changes from devhub.config.yaml
+      hotReload: true
+    certification:
+      autoSync: false         # Require manual approval
+      healthCheck: true
+    production:
+      autoSync: false
+      healthCheck: true
+      requireApproval: true
+
+# Frontend service configuration  
+frontend:
+  runtime: nodejs
+  version: "20"
+  framework: angular
+  port: 4200
+  
+  environments:
+    development:
+      autoSync: true
+      hotReload: true
+    certification:
+      autoSync: false
+    production:
+      autoSync: false
+      requireApproval: true
+
+# DevHub platform settings
+platform:
+  # How often DevHub updates .devhub/ files
+  syncInterval: 60s           # 60 seconds
+  
+  # What to monitor
+  monitoring:
+    deployment: true
+    security: true
+    quality: true
+    integration: true
+  
+  # Security scanning
+  security:
+    scanOnDeploy: true
+    scanSchedule: "0 1 * * *"  # Daily at 1 AM
+  
+  # Quality checks
+  quality:
+    runTests: true
+    requireCoverage: 75        # Minimum coverage %
+    lintOnCommit: true
+
+# Notification settings
+notifications:
+  deployment:
+    slack: true
+    email: true
+  security:
+    critical: immediate
+    high: 1h
+  quality:
+    failedTests: immediate

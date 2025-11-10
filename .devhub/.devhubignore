@@ -1,0 +1,66 @@
+# DevHub Ignore File
+# Files and folders DevHub should ignore when processing this project
+
+# Dependencies
+node_modules/
+.npm/
+.yarn/
+vendor/
+bower_components/
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.angular/
+*.bundle.js
+*.bundle.css
+
+# Environment files (now managed in .devhub/deployment.yaml)
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+*.test.js.snap
+__tests__/__snapshots__/
+
+# Temporary
+tmp/
+temp/
+*.tmp
+*.bak
+
+# Git
+.git/
+.gitignore
+
+# DevHub old backups
+.devhub-old/
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
