@@ -1,0 +1,16 @@
+# Local deployment files
+*.local
+*.log
+
+# Actual secrets (keep examples only)
+secrets.yml
+*.pem
+*.key
+
+# Terraform state
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Local scripts
+*-local.sh

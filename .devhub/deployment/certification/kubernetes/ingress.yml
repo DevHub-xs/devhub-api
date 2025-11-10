@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: devhub-api-cert-ingress
+  namespace: devhub-cert
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - api-cert.devhub.example.com
+    secretName: devhub-api-cert-tls
+  rules:
+  - host: api-cert.devhub.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: devhub-api-cert-service
+            port:
+              number: 80
