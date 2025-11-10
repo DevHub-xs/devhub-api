@@ -1,78 +1,46 @@
-# DevHub API - DevOps Configuration
+# .devhub/
 
-This directory contains all CI/CD, deployment, and infrastructure configurations for the DevHub API.
+This folder contains DevHub-generated status information for your project.
 
 ## Structure
 
 ```
 .devhub/
-├── ci/                          # CI/CD Pipeline configurations
-│   ├── development/
-│   │   └── github-actions.yml
-│   ├── certification/
-│   │   └── github-actions.yml
-│   └── production/
-│       └── github-actions.yml
-│
-├── deployment/                  # Deployment configurations
-│   ├── development/
-│   │   ├── docker/
-│   │   ├── kubernetes/
-│   │   └── .env.example
-│   ├── certification/
-│   │   ├── docker/
-│   │   ├── kubernetes/
-│   │   ├── render/
-│   │   ├── aws/
-│   │   ├── mongodb-atlas.json
-│   │   └── .env.example
-│   └── production/
-│       ├── docker/
-│       ├── kubernetes/
-│       ├── render/
-│       ├── aws/
-│       ├── mongodb-atlas.json
-│       └── .env.example
-│
-├── scripts/                     # Deployment automation scripts
-│   ├── deploy-dev.sh
-│   ├── deploy-cert.sh
-│   └── deploy-prod.sh
-│
-└── docs/                        # DevOps documentation
-    ├── CI_CD_SETUP.md
-    ├── DEPLOYMENT_GUIDE.md
-    └── TROUBLESHOOTING.md
+├── deployment.yaml    # Deployment status (dev/cert/prod)
+├── security.yaml      # Security scans & compliance
+├── quality.yaml       # Code quality & tests
+└── integration.yaml   # External services status
 ```
 
-## Quick Start
+## Purpose
 
-### Local Development
+**Like `.git/` for Git, `.devhub/` is for DevHub**
+
+Browse these files to understand:
+- 🚀 **Deployment** - What's deployed where
+- 🔒 **Security** - Vulnerabilities & compliance
+- ✅ **Quality** - Test coverage & code health
+- 🔗 **Integration** - External services status
+
+## Usage
+
 ```bash
-bash .devhub/scripts/deploy-dev.sh
+# Check deployment status
+cat .devhub/deployment.yaml
+
+# Review security issues
+cat .devhub/security.yaml
+
+# View code quality
+cat .devhub/quality.yaml
+
+# Monitor integrations
+cat .devhub/integration.yaml
 ```
 
-### Certification Deployment
-```bash
-export DEPLOY_TARGET=k8s  # or 'render'
-bash .devhub/scripts/deploy-cert.sh
-```
+## Important
 
-### Production Deployment
-```bash
-export DEPLOY_TARGET=k8s  # or 'aws'
-bash .devhub/scripts/deploy-prod.sh
-```
+⚠️ **Do not manually edit these files**
 
-## Documentation
-- [CI/CD Setup](.devhub/docs/CI_CD_SETUP.md)
-- [Deployment Guide](.devhub/docs/DEPLOYMENT_GUIDE.md)
-- [Troubleshooting](.devhub/docs/TROUBLESHOOTING.md)
+They are generated and updated by the DevHub platform based on your `devhub.config.yaml`.
 
-## Environment Files
-Environment-specific configurations are in:
-- `deployment/development/.env.example`
-- `deployment/certification/.env.example`
-- `deployment/production/.env.example`
-
-Copy these to create actual `.env.*` files in the project root.
