@@ -1,4 +1,5 @@
 import express from 'express';
+import authRoutes from './authRoutes.js';
 import userRoutes from './userRoutes.js';
 import serviceRoutes from './serviceRoutes.js';
 import developerToolRoutes from './developerToolRoutes.js';
@@ -72,8 +73,9 @@ router.get('/', (req, res) => {
   res.json({
     success: true,
     message: 'DevHub API - Internal Developer Portal',
-    version: '1.0.0',
+    version: '0.2.1',
     endpoints: {
+      auth: '/api/auth',
       users: '/api/users',
       services: '/api/services',
       tools: '/api/tools',
@@ -83,6 +85,7 @@ router.get('/', (req, res) => {
 });
 
 // Mount routes
+router.use('/auth', authRoutes);
 router.use('/users', userRoutes);
 router.use('/services', serviceRoutes);
 router.use('/tools', developerToolRoutes);

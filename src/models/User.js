@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['user', 'admin', 'developer'],
+    enum: ['viewer', 'developer', 'admin'],
     default: 'developer',
   },
   firstName: {
@@ -34,6 +34,10 @@ const userSchema = new mongoose.Schema({
     trim: true,
   },
   lastName: {
+    type: String,
+    trim: true,
+  },
+  avatar: {
     type: String,
     trim: true,
   },
