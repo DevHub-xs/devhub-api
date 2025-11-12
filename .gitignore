@@ -109,3 +109,9 @@ dist
 # OS
 .DS_Store
 Thumbs.db
+
+# Environment files with sensitive data
+.env.development
+.env.certification
+.env.production
+docker-compose.dev.yml
