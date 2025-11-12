@@ -1,6 +1,6 @@
 {
   "name": "devhub-api",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Enterprise-grade Node.js API for Internal Developer Portal with microservices architecture",
   "main": "src/index.js",
   "type": "module",
@@ -28,7 +28,12 @@
     "start:cert": "node --env-file=.env.certification src/index.js",
     "start:prod": "node --env-file=.env.production src/index.js",
     "dev": "node --env-file=.env.development --watch src/index.js",
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "echo \"No tests specified\" && exit 0",
+    "docker:db": "docker-compose -f docker-compose.dev.yml up -d",
+    "docker:db:stop": "docker-compose -f docker-compose.dev.yml down",
+    "docker:db:logs": "docker-compose -f docker-compose.dev.yml logs -f mongodb",
+    "docker:full": "docker-compose up -d",
+    "docker:down": "docker-compose down"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

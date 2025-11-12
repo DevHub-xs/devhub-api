@@ -90,13 +90,13 @@ const server = app.listen(PORT, () => {
   console.log(`
 ╔═══════════════════════════════════════════════════════════╗
 ║                                                           ║
-║   DevHub API - Internal Developer Portal                 ║
+║   DevHub API - Internal Developer Portal                  ║
 ║                                                           ║
-║   Environment: ${config.env.padEnd(42)} ║
-║   Port: ${PORT.toString().padEnd(47)} ║
-║   MongoDB: ${config.mongodb.uri.padEnd(42)} ║
+║   Environment: ${config.env.padEnd(42)}                   ║
+║   Port: ${PORT.toString().padEnd(47)}                     ║
+║   MongoDB: ${config.mongodb.uri.padEnd(42)}               ║
 ║                                                           ║
-║   Server is running successfully!                        ║
+║   Server is running successfully!                         ║
 ║                                                           ║
 ╚═══════════════════════════════════════════════════════════╝
   `);

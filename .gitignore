@@ -114,3 +114,4 @@ Thumbs.db
 .env.development
 .env.certification
 .env.production
+docker-compose.dev.yml

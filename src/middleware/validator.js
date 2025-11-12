@@ -18,8 +18,8 @@ export const validate = (req, res, next) => {
   next();
 };
 
-// User validation rules
-export const userValidation = {
+// Auth validation rules
+export const authValidation = {
   register: [
     body('username')
       .trim()
@@ -57,6 +57,38 @@ export const userValidation = {
       .notEmpty()
       .withMessage('Password is required'),
   ],
+
+  changePassword: [
+    body('oldPassword')
+      .notEmpty()
+      .withMessage('Current password is required'),
+    body('newPassword')
+      .isLength({ min: 6 })
+      .withMessage('New password must be at least 6 characters long'),
+  ],
+
+  forgotPassword: [
+    body('email')
+      .trim()
+      .isEmail()
+      .withMessage('Please provide a valid email address')
+      .normalizeEmail(),
+  ],
+
+  resetPassword: [
+    body('token')
+      .notEmpty()
+      .withMessage('Reset token is required'),
+    body('newPassword')
+      .isLength({ min: 6 })
+      .withMessage('Password must be at least 6 characters long'),
+  ],
+};
+
+// User validation rules
+export const userValidation = {
+  register: authValidation.register,
+  login: authValidation.login,
   
   update: [
     body('firstName')

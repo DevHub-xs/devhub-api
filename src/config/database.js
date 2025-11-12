@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const connectDB = async () => {
   try {
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/devhub';
+    const mongoURI = process.env.MONGODB_URI || process.env.OTHER_DATABASE_URI;
 
     const conn = await mongoose.connect(mongoURI);
 
@@ -26,7 +26,8 @@ const connectDB = async () => {
 
   } catch (error) {
     console.error(`Error connecting to MongoDB: ${error.message}`);
-    process.exit(1);
+    console.log('\n⚠️  MongoDB Connection Failed!');
+    // Don't exit - let the API run without DB for now
   }
 };
 
