@@ -1,0 +1,10 @@
+name: CD DevHub API
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Deploy DevHub API
+    uses: DevHub-xs/devhub-actions/workflows/api-cd.yml@v1

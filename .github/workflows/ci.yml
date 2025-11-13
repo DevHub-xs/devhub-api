@@ -1,0 +1,12 @@
+name: CI DevHub API
+
+on:
+  push:
+    branches: [feature/*]
+  pull_request:
+    branches: [main, development, feature/*]
+
+jobs:
+  ci:
+    name: CI DevHub API
+    uses: DevHub-xs/devhub-actions/workflows/api-ci.yml@v1
