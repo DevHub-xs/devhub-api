@@ -7,4 +7,4 @@ on:
 jobs:
   deploy:
     name: Deploy DevHub API
-    uses: DevHub-xs/devhub-actions/workflows/api-cd.yml@v1
+    uses: DevHub-xs/devhub-actions/.github/workflows/api-cd.yml@main
