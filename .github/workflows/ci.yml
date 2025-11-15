@@ -10,3 +10,5 @@ jobs:
   ci:
     name: CI DevHub API
     uses: DevHub-xs/devhub-actions/workflows/api-ci.yml@v1
+    with:
+      node-version: '20.x'
