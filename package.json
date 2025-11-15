@@ -1,6 +1,6 @@
 {
   "name": "devhub-api",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Enterprise-grade Node.js API for Internal Developer Portal with microservices architecture",
   "main": "src/index.js",
   "type": "module",
