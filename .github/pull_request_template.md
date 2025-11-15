@@ -27,27 +27,6 @@ Closes #
 - [ ] Existing endpoint(s) modified
 - [ ] Endpoint(s) deprecated/removed
 
-## Testing
-<!-- Describe the tests you ran to verify your changes -->
-- [ ] Unit tests pass
-- [ ] Integration tests pass
-- [ ] Manual testing performed
-- [ ] API documentation updated
-
-## Database Changes
-- [ ] No database changes
-- [ ] Schema changes (describe below)
-- [ ] Migration scripts included
-
-## Checklist
-- [ ] Code follows project style guidelines
-- [ ] Self-review completed
-- [ ] Comments added for complex code
-- [ ] Documentation updated
-- [ ] No new warnings generated
-- [ ] Tests added/updated
-- [ ] Environment variables documented (if added)
-
 ---
 
 **Copyright © 2024-2025 Pedro Accarini. All Rights Reserved.**
