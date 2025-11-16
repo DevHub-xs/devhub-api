@@ -1,11 +1,35 @@
-import { authenticate, authorize, optionalAuth } from '../../../src/middleware/auth.js';
-import User from '../../../src/models/User.js';
-import { generateAccessToken } from '../../../src/utils/jwt.js';
-import jwt from 'jsonwebtoken';
+import { jest } from '@jest/globals';
 
-// Mock dependencies
-jest.mock('../../../src/models/User.js');
-jest.mock('jsonwebtoken');
+// Create mocks before importing the middleware
+const mockJwt = {
+  verify: jest.fn()
+};
+
+const mockUser = {
+  findById: jest.fn()
+};
+
+const mockConfig = {
+  jwt: {
+    secret: 'test-secret'
+  }
+};
+
+// Mock modules
+jest.unstable_mockModule('jsonwebtoken', () => ({
+  default: mockJwt
+}));
+
+jest.unstable_mockModule('../../../src/models/index.js', () => ({
+  User: mockUser
+}));
+
+jest.unstable_mockModule('../../../src/config/index.js', () => ({
+  default: mockConfig
+}));
+
+// Now import the middleware after mocking
+const { authenticate, authorize, optionalAuth } = await import('../../../src/middleware/auth.js');
 
 describe('Auth Middleware', () => {
   let req, res, next;
@@ -22,22 +46,22 @@ describe('Auth Middleware', () => {
 
   describe('authenticate', () => {
     it('should authenticate valid token', async () => {
-      const mockUser = {
+      const mockUserData = {
         _id: '123',
         username: 'testuser',
         isActive: true
       };
 
       req.headers.authorization = 'Bearer valid-token';
-      jwt.verify = jest.fn().mockReturnValue({ userId: '123' });
-      User.findById = jest.fn().mockReturnValue({
-        select: jest.fn().mockResolvedValue(mockUser)
+      mockJwt.verify.mockReturnValue({ userId: '123' });
+      mockUser.findById.mockReturnValue({
+        select: jest.fn().mockResolvedValue(mockUserData)
       });
 
       await authenticate(req, res, next);
 
       expect(next).toHaveBeenCalled();
-      expect(req.user).toEqual(mockUser);
+      expect(req.user).toEqual(mockUserData);
       expect(res.status).not.toHaveBeenCalled();
     });
 
@@ -54,8 +78,10 @@ describe('Auth Middleware', () => {
 
     it('should reject invalid token', async () => {
       req.headers.authorization = 'Bearer invalid-token';
-      jwt.verify = jest.fn().mockImplementation(() => {
-        throw new Error('JsonWebTokenError');
+      mockJwt.verify.mockImplementation(() => {
+        const error = new Error('JsonWebTokenError');
+        error.name = 'JsonWebTokenError';
+        throw error;
       });
 
       await authenticate(req, res, next);
@@ -65,15 +91,15 @@ describe('Auth Middleware', () => {
     });
 
     it('should reject inactive user', async () => {
-      const mockUser = {
+      const mockUserData = {
         _id: '123',
         isActive: false
       };
 
       req.headers.authorization = 'Bearer valid-token';
-      jwt.verify = jest.fn().mockReturnValue({ userId: '123' });
-      User.findById = jest.fn().mockReturnValue({
-        select: jest.fn().mockResolvedValue(mockUser)
+      mockJwt.verify.mockReturnValue({ userId: '123' });
+      mockUser.findById.mockReturnValue({
+        select: jest.fn().mockResolvedValue(mockUserData)
       });
 
       await authenticate(req, res, next);
@@ -116,21 +142,21 @@ describe('Auth Middleware', () => {
 
   describe('optionalAuth', () => {
     it('should attach user if valid token provided', async () => {
-      const mockUser = {
+      const mockUserData = {
         _id: '123',
         isActive: true
       };
 
       req.headers.authorization = 'Bearer valid-token';
-      jwt.verify = jest.fn().mockReturnValue({ userId: '123' });
-      User.findById = jest.fn().mockReturnValue({
-        select: jest.fn().mockResolvedValue(mockUser)
+      mockJwt.verify.mockReturnValue({ userId: '123' });
+      mockUser.findById.mockReturnValue({
+        select: jest.fn().mockResolvedValue(mockUserData)
       });
 
       await optionalAuth(req, res, next);
 
       expect(next).toHaveBeenCalled();
-      expect(req.user).toEqual(mockUser);
+      expect(req.user).toEqual(mockUserData);
     });
 
     it('should continue without user if no token', async () => {

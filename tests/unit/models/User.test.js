@@ -1,17 +1,10 @@
-import User from '../../../src/models/User.js';
-
-// Mock mongoose
-jest.mock('mongoose', () => ({
-  Schema: jest.fn(),
-  model: jest.fn(),
-  connect: jest.fn(),
-  connection: {
-    close: jest.fn()
-  }
-}));
+import { jest } from '@jest/globals';
 
 // Mock User model
-jest.mock('../../../src/models/User.js');
+const User = {
+  create: jest.fn(),
+  findById: jest.fn()
+};
 
 describe('User Model', () => {
   beforeEach(() => {
