@@ -1,0 +1,13 @@
+name: CD DevHub API
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Deployment
+    uses: DevHub-xs/devhub-actions/.github/workflows/api-cd.yml@main
+    secrets:
+      render-api-key: ${{ secrets.RENDER_API_KEY }}
+      render-service-id: ${{ secrets.RENDER_API_SERVICE_ID }}

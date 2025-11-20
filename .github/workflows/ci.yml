@@ -1,0 +1,14 @@
+name: CI DevHub API
+
+on:
+  push:
+    branches: [feature/*]
+  pull_request:
+    branches: [main, development, feature/*]
+
+jobs:
+  ci:
+    name: Integration
+    uses: DevHub-xs/devhub-actions/.github/workflows/api-ci.yml@main
+    with:
+      node-version: '20.x'

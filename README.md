@@ -1,6 +1,6 @@
 # DevHub API
 
-> Enterprise-grade Node.js API for Internal Developer Portal.
+> Enterprise-grade Node.js API for Developer Hub Portal.
 
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green?logo=node.js)](https://nodejs.org)
 [![Express](https://img.shields.io/badge/Express-4.x-000000?logo=express)](https://expressjs.com)
